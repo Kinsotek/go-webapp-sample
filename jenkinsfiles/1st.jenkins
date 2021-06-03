@@ -1,0 +1,13 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Get Data') {
+            steps {
+                echo "======[The project building has started.]======"
+                dir ('dockerfiles')
+                sh 'docker build -t go-webapp-sample .'
+            }
+        }
+    }
+}
