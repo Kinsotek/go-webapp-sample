@@ -7,8 +7,9 @@ pipeline {
         stage('Get Data') {
             steps {
                 echo "======[The project building has started.]======"
-                dir ('dumspirospero/dockerfiles')
+                dir ('dumspirospero/dockerfiles') {
                 sh 'docker build -t go-webapp-sample .'
+		}
             }
         }
     }
