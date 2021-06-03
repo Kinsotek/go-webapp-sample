@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 pipeline {
     agent any
 
@@ -5,7 +7,7 @@ pipeline {
         stage('Get Data') {
             steps {
                 echo "======[The project building has started.]======"
-                dir ('dockerfiles')
+                dir ('dumspirospero/dockerfiles')
                 sh 'docker build -t go-webapp-sample .'
             }
         }
