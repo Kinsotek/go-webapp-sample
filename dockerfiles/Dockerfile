@@ -1,4 +1,4 @@
-FROM golang:latest
+ROM golang:latest
 
 RUN mkdir /build
 WORKDIR /build
