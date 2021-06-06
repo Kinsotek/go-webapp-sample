@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('======[Git-cloning all da stuff]======') {
+            steps {
+                git([url: 'https://github.com/1tacticalretard/dumspirospero.git', branch: 'main'])
+            }
+        }
+        stage('======[Building da stuff]======') {
+            steps {
+                dir('dockerfiles'){
+                sh 'sudo docker build -t go-webapp-sample .'
+                }
+            }
+        }
+        stage('Ending') {
+            steps {
+               echo 'So to say, baldyozh.'
+                }
+        }
+    }
+}
