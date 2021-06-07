@@ -1,8 +1,8 @@
 pipeline {
    agent { 
 	dockerfile { 
+		additionalBuildArgs  '--tag go-webapp-sample'
 		dir 'dockerfiles' 
-		additionalBuildArgs '-t go-webapp-sample:{BUILD_NUMBER}'
 		    } 
 	}
     stages {
