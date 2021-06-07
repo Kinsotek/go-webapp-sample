@@ -6,6 +6,12 @@ pipeline {
 		    } 
 	}
     stages {
+	stage('Removing unnecessary containers...') {
+            steps {
+                sh 'docker images | grep "^go-webapp-sample"'
+            }
+        }
+
         stage('Info') {
             steps {
                 echo 'Looks like everything works pretty fine (surprisely, isnt it?) '
