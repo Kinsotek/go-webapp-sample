@@ -2,12 +2,11 @@ pipeline {
    agent { 
 	dockerfile { 
 		dir 'dockerfiles' 
-		additionalBuildArgs '-t go-webapp-sample'
-		args '-it -p 8080:8080 --rm sh -c 'cd go-webapp-sample && ./go-webapp-sample' '
+		additionalBuildArgs '-t go-webapp-sample:{BUILD_NUMBER}'
 		    } 
 	}
     stages {
-        stage('Hello') {
+        stage('') {
             steps {
                 echo 'Hello World'
             }
