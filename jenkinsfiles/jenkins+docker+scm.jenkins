@@ -2,7 +2,7 @@ pipeline {
    agent { 
 	dockerfile { 
 		dir 'dockerfiles' 
-		args '-t go-webapp-sample'
+		additionalBuildArgs '-t go-webapp-sample'
 		    } 
 	}
     stages {
