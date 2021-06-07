@@ -6,9 +6,9 @@ pipeline {
 		    } 
 	}
     stages {
-        stage('') {
+        stage('Info') {
             steps {
-                echo 'Hello World'
+                echo 'Looks like everything works pretty fine (surprisely, isn't it?)'
             }
         }
     }
