@@ -1,5 +1,10 @@
 pipeline {
-   agent { dockerfile { dir 'dockerfiles' label 'go-webapp-sample' } }
+   agent { 
+	dockerfile { 
+		dir 'dockerfiles' 
+		args '-t go-webapp-sample'
+		    } 
+	}
     stages {
         stage('Hello') {
             steps {
