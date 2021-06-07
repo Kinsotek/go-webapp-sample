@@ -1,0 +1,17 @@
+pipeline {
+    agent {
+	dockerfile {
+	filename 'Dockerfile'
+	dir 'dockerfiles'
+	label 'go-webapp-sample'
+		}
+	}
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}
+
