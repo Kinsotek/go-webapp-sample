@@ -1,0 +1,56 @@
+pipeline {
+    
+    agent any
+    
+    environment {
+        
+        creds = "nexus"
+        regaddr = "127.0.0.1:8085/"
+        dockerImage = ''
+        noti = "go-webapp-sample"
+    }
+    
+    stages {
+        
+    stage('Retrieving prj. data') {
+      steps{
+          echo '=================[Getting the project data from github.com/1tacticalretard/dumspirospero]================='
+        git([url: 'https://github.com/1tacticalretard/dumspirospero.git', branch: 'main'])
+          echo '=================[The project data retrieval is over.]================='
+        }
+      }
+      
+    stage('Running tests') {
+      steps{
+          echo '=================[Running tests before Docker Build]================='
+            sh 'go test ./...'
+          echo '=================[The testing is done.]================='
+        }
+      }
+    // Building Docker images
+    stage('Building image') {
+      steps{
+          echo '=================[Creating the Docker Image of the project]================='
+          dir("dockerfiles") {
+        script {
+          dockerImage = docker.build noti
+        }
+        }
+        echo '=================[The Docker Image of the project has just been successfully created.]================='
+      }
+    }
+
+    // Uploading Docker images into Nexus Registry
+    stage('Uploading to Nexus') {
+     steps{  
+         echo '=================[Uploading the project image to Nexus repo]================='
+         script {
+             docker.withRegistry( 'http://'+regaddr, creds ) {
+             dockerImage.push('latest')
+          }
+        }
+        echo '=================[The project image upload is successful.]================='
+      }
+    }
+}
+}
